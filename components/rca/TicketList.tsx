@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback, Fragment } from "react";
 
-const BASE_URL = "https://fastapi-pyp.onrender.com";
-// const BASE_URL = "http://127.0.0.1:8000";
+// const BASE_URL = "https://fastapi-pyp.onrender.com";
+const BASE_URL = "http://127.0.0.1:8000";
 
 // API Response structure
 interface LLMAnalysis {
@@ -125,11 +125,6 @@ export default function TicketList({ refreshSignal }: Props) {
   useEffect(() => {
     fetchTickets();
   }, [fetchTickets, refreshSignal]);
-
-  useEffect(() => {
-    const id = setInterval(fetchTickets, 15000);
-    return () => clearInterval(id);
-  }, [fetchTickets]);
 
   const filteredTickets = activeFilter 
     ? tickets.filter(t => t.intent?.includes(activeFilter))
